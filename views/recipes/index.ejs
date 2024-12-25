@@ -1,0 +1,25 @@
+
+<body>
+  <%- include('../partials/_navbar') %>
+  <h1>My Recipes</h1>
+  <a href="/recipes/new">Add a  New Recipe: </a>
+
+  <% if (recipes.length > 0) { %> 
+  <ol>
+    <% recipes.forEach(recipe => { %>
+    <li>
+      <a href="/recipes/<%= recipe._id %>" class="recipe-link">
+        <%= recipe.name %> (<%= recipe.ingredients.length %> ingredients)
+      </a>
+      <form action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete</button>
+      </form>
+    </li>
+    <% }) %>
+  </ol>
+  <% } else { %>
+  <p>
+    None <a href="/recipes/new">Add one</a>!
+  </p>
+  <% } %>
+</body>
